@@ -10,10 +10,11 @@ describe OrderAheadProvider do
   end
 
   describe "#find_by_name" do
-    it "returns a json_hash" do
+    it "returns a json_hash if results" do
       oa_search = OrderAheadProvider.new
-      json_hash = oa_search.find_by_name("Best of Thai Noodle")
-      expect(json_hash["name"]).to include "Best of Thai Noodle"
+      restaurant = oa_search.find_by_name("Best of Thai Noodle")
+      expect(restaurant.name).to include "Best of Thai Noodle"
+      expect(restaurant.class).to be Restaurant
     end
   end
 end

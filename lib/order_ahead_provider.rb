@@ -6,8 +6,13 @@ class OrderAheadProvider < SearchProvider
   end
 
   def find_by_name restaurant_name
+    data = {}
+
     search_name = restaurant_name.downcase.gsub(" ", "-")
     json_url = @host + search_name + @host_suffix
-    fetch_data(json_url)
+    search_return = fetch_data(json_url)
+    data["name"] = search_return["name"]
+
+    Restaurant.new(data)
   end
 end
