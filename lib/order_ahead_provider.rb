@@ -3,6 +3,7 @@ class OrderAheadProvider < SearchProvider
     super
     @host = "https://www.orderaheadapp.com/"
     @host_suffix = "--san-francisco-ca.json"
+    @lat_lon_query = "lat=#{@address.lat}&lon=#{@address.lng}"
   end
 
   def find_by_name restaurant_name
@@ -18,11 +19,12 @@ class OrderAheadProvider < SearchProvider
   end
 
   def search_by_keywords keywords_array
-    delivery_suffix = "&page=1&per=60&ext=&delivers_to=true&pickup_at=&open_now=&" + address
     search_prefix = "/api/v1.0.6/stores/search/?query="
+    delivery_suffix = "&page=1&per=60&ext=&delivers_to=true&pickup_at=&open_now=&" + @lat_lon_query
     search_term = keywords_array.gsub(" ", "+").downcase
 
     search_url = @host + search_prefix + search_term + delivery_suffix
+    p search_url
     search_results = fetch_data(search_url)
 
     if redirected_to_restaurant?(search_results)

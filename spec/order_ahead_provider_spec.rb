@@ -5,13 +5,13 @@ require "order_ahead_provider"
 
 describe OrderAheadProvider do
   it "inherits from SearchProvider" do
-    oa_search = OrderAheadProvider.new("12345")
-    expect(oa_search.address).to eq "12345"
+    oa_search = OrderAheadProvider.new("94117")
+    expect(oa_search.address.class).to eq Address
   end
 
   describe "#find_by_name" do
     it "returns a json_hash if results" do
-      oa_search = OrderAheadProvider.new
+      oa_search = OrderAheadProvider.new("94117")
       restaurant = oa_search.find_by_name("Best of Thai Noodle")
       expect(restaurant.name).to include "Best of Thai Noodle"
       expect(restaurant.class).to be Restaurant
@@ -19,7 +19,7 @@ describe OrderAheadProvider do
   end
   describe "#find_by_id" do
     it "returns a json_hash if results" do
-      oa_search = OrderAheadProvider.new
+      oa_search = OrderAheadProvider.new("94117")
       restaurant = oa_search.find_by_id("733")
       expect(restaurant.name).to include "Best of Thai Noodle"
       expect(restaurant.class).to be Restaurant
@@ -27,14 +27,14 @@ describe OrderAheadProvider do
   end
   describe "#search_by_keywords" do
     it "search for restaurant name (exact name)" do
-      oa_search = OrderAheadProvider.new("lat=37.7717185&lon=-122.44389289999998")
+      oa_search = OrderAheadProvider.new("94117")
       search_array = oa_search.search_by_keywords("Best of Thai Noodle")
       expect(search_array.first.name).to include "Best of Thai Noodle"
       expect(search_array.length).to eq 1
       expect(search_array.class).to be Array
     end
     it "search for restaurant name (fuzzy name)" do
-      oa_search = OrderAheadProvider.new("lat=37.7717185&lon=-122.44389289999998")
+      oa_search = OrderAheadProvider.new("94117")
       search_array = oa_search.search_by_keywords("chicken")
       search_restaurant = search_array.find {|restaurant| restaurant.name == "Soul Groove"}
 
