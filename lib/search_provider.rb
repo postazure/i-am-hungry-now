@@ -23,6 +23,6 @@ class SearchProvider
   private
   def fetch_data search_url
     raw_json = RestClient.get(search_url)
-    parsed_json = JSON.parse(raw_json.body)
+    JSON.parse(raw_json.body)
   end
 end
