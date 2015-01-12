@@ -17,4 +17,12 @@ describe OrderAheadProvider do
       expect(restaurant.class).to be Restaurant
     end
   end
+  describe "#find_by_id" do
+    it "returns a json_hash if results" do
+      oa_search = OrderAheadProvider.new
+      restaurant = oa_search.find_by_id("733")
+      expect(restaurant.name).to include "Best of Thai Noodle"
+      expect(restaurant.class).to be Restaurant
+    end
+  end
 end

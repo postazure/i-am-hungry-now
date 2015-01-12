@@ -11,5 +11,9 @@ describe Restaurant do
       restaurant = oa_search.find_by_name("Best of Thai Noodle")
       expect(restaurant.name).to eq "Best of Thai Noodle"
     end
+    it "#phone_number" do
+      restaurant = oa_search.find_by_name("Best of Thai Noodle")
+      expect(restaurant.phone_number).to eq "415-552-3534"
+    end
   end
 end
