@@ -24,7 +24,6 @@ class OrderAheadProvider < SearchProvider
     search_term = keywords_array.gsub(" ", "+").downcase
 
     search_url = @host + search_prefix + search_term + delivery_suffix
-    p search_url
     search_results = fetch_data(search_url)
 
     if redirected_to_restaurant?(search_results)
