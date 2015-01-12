@@ -20,4 +20,9 @@ class SearchProvider
   def search_by_location address=@address
     "search_by_location not implemented for this search provider"
   end
+  private
+  def fetch_data search_url
+    raw_json = RestClient.get(search_url)
+    parsed_json = JSON.parse(raw_json.body)
+  end
 end
