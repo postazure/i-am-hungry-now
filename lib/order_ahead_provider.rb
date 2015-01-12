@@ -37,20 +37,9 @@ class OrderAheadProvider < SearchProvider
     restaurant_data = {}
     restaurant_data["name"] = data["name"]
     restaurant_data["phone_number"] = data["phone_number"]
-    # puts "-"*10
-    # p data["default_prep_duration"]
-    # p data["delivery_prep_bump"]
-    # p data["min_delivery_time"]
-    # p data["max_delivery_time"]
-
-    restaurant_data["default_prep_duration"] = (
-      data["default_prep_duration"].nil? ? 0 : data["default_prep_duration"])
-    restaurant_data["delivery_prep_bump"] = (
-      data["delivery_prep_bump"].nil? ? 0 : data["delivery_prep_bump"])
-    restaurant_data["min_delivery_time"] = (
-      data["min_delivery_time"].nil? ? 0 : data["min_delivery_time"])
-    restaurant_data["max_delivery_time"] = (
-      data["max_delivery_time"].nil? ? 0 : data["max_delivery_time"])
+    restaurant_data["min_delivery_time"] = delivery_time(data)
+    restaurant_data["max_delivery_time"] = delivery_time(data)
+    restaurant_data["accepting_orders"] = accepting_orders(data)
     Restaurant.new(restaurant_data)
   end
 
@@ -64,5 +53,15 @@ class OrderAheadProvider < SearchProvider
       restaurants << convert_to_restaurant_obj(store)
     end
     restaurants
+  end
+
+  def delivery_time data
+    #store_scaling_delivery_attributes[(minute_increment * mile_interval)] #after address class
+    sum = data["default_prep_duration"].nil? ? 0 : data["default_prep_duration"]
+    sum += data["delivery_prep_bump"].nil? ? 0 : data["delivery_prep_bump"]
+  end
+
+  def accepting_orders data
+    !data["not_accepting_orders"] && data["open_now?"]
   end
 end
