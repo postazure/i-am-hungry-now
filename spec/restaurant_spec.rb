@@ -29,6 +29,5 @@ describe Restaurant do
       restaurant = oa_search.find_by_name("Best of Thai Noodle")
       expect(restaurant.accepting_orders?).to be false
     end
-    #not_accepting_orders
   end
 end
