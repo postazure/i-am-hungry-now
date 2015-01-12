@@ -15,5 +15,23 @@ describe Restaurant do
       restaurant = oa_search.find_by_name("Best of Thai Noodle")
       expect(restaurant.phone_number).to eq "415-552-3534"
     end
+    it "#delivery_time_min" do
+      restaurant = oa_search.find_by_name("Best of Thai Noodle")
+      p restaurant.delivery_time_min
+      expect(restaurant.delivery_time_min).to be > 0
+    end
+    it "#delivery_time_max" do
+      restaurant = oa_search.find_by_name("Best of Thai Noodle")
+      p restaurant.delivery_time_max
+      expect(restaurant.delivery_time_max).to be > 0
+    end
+    it "#hours"
+    #hours_today
+
+    it "#open"
+    #open_now?
+
+    it "#accepting_orders?"
+    #not_accepting_orders
   end
 end

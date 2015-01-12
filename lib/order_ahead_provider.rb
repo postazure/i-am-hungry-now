@@ -37,6 +37,20 @@ class OrderAheadProvider < SearchProvider
     restaurant_data = {}
     restaurant_data["name"] = data["name"]
     restaurant_data["phone_number"] = data["phone_number"]
+    # puts "-"*10
+    # p data["default_prep_duration"]
+    # p data["delivery_prep_bump"]
+    # p data["min_delivery_time"]
+    # p data["max_delivery_time"]
+
+    restaurant_data["default_prep_duration"] = (
+      data["default_prep_duration"].nil? ? 0 : data["default_prep_duration"])
+    restaurant_data["delivery_prep_bump"] = (
+      data["delivery_prep_bump"].nil? ? 0 : data["delivery_prep_bump"])
+    restaurant_data["min_delivery_time"] = (
+      data["min_delivery_time"].nil? ? 0 : data["min_delivery_time"])
+    restaurant_data["max_delivery_time"] = (
+      data["max_delivery_time"].nil? ? 0 : data["max_delivery_time"])
     Restaurant.new(restaurant_data)
   end
 
