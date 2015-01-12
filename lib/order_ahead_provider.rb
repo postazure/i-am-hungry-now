@@ -38,8 +38,8 @@ class OrderAheadProvider < SearchProvider
     restaurant_data = {}
     restaurant_data["name"] = data["name"]
     restaurant_data["phone_number"] = data["phone_number"]
-    restaurant_data["min_delivery_time"] = delivery_time(data)
-    restaurant_data["max_delivery_time"] = delivery_time(data)
+    restaurant_data["min_delivery_time"] = delivery_time(data) + data["min_delivery_time"]
+    restaurant_data["max_delivery_time"] = delivery_time(data) + data["max_delivery_time"]
     restaurant_data["accepting_orders"] = accepting_orders(data)
     Restaurant.new(restaurant_data)
   end

@@ -4,7 +4,7 @@ require "search_provider"
 
 describe SearchProvider do
   describe "#initialize" do
-    xit "no address doesn't error out" do
+    it "no address doesn't error out" do
       search = SearchProvider.new
       expect(search.address).to eq nil
       expect(search.class).to eq SearchProvider

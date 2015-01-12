@@ -17,13 +17,13 @@ describe Restaurant do
     end
     it "#delivery_time_min" do
       restaurant = oa_search.find_by_name("Best of Thai Noodle")
-      puts "Delivery Min #{restaurant.delivery_time_min}"
-      expect(restaurant.delivery_time_min).to be > 0
+      #puts "Delivery Min #{restaurant.delivery_time_min}"
+      expect(restaurant.delivery_time_min).to be > 20
     end
     it "#delivery_time_max" do
       restaurant = oa_search.find_by_name("Best of Thai Noodle")
-      puts "Delivery Max #{restaurant.delivery_time_max}"
-      expect(restaurant.delivery_time_max).to be > 0
+      #puts "Delivery Max #{restaurant.delivery_time_max}"
+      expect(restaurant.delivery_time_max).to be > restaurant.delivery_time_min
     end
     it "#accepting_orders?" do
       restaurant = oa_search.find_by_name("Best of Thai Noodle")
