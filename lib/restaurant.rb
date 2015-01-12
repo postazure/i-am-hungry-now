@@ -6,6 +6,8 @@ class Restaurant
     @phone_number = data["phone_number"]
     @delivery_time_min = data["min_delivery_time"]
     @delivery_time_max = data["max_delivery_time"]
+    #source(searchprovider)
+    #address(of restaurant)
   end
   def accepting_orders?
     @data["accepting_orders"]

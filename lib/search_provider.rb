@@ -2,7 +2,7 @@ class SearchProvider
   attr_reader :address
   def initialize address=nil
     return "No address input" if address.nil?
-    @address = address
+    @address = Address.new(address)
   end
 
   def find_by_name restaurant
