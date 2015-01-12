@@ -41,6 +41,10 @@ class OrderAheadProvider < SearchProvider
     restaurant_data["min_delivery_time"] = delivery_time(data) + data["min_delivery_time"]
     restaurant_data["max_delivery_time"] = delivery_time(data) + data["max_delivery_time"]
     restaurant_data["accepting_orders"] = accepting_orders(data)
+    restaurant_data["source_name"] = "OrderAhead"
+    restaurant_data["source_url"] = @host + "places/"+ data["slug"]
+    restaurant_data["logo"] = data["logo_thumb_url"]
+    restaurant_data["yelp_url"] = data["yelp_url"]
     Restaurant.new(restaurant_data)
   end
 
