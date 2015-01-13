@@ -18,9 +18,9 @@ class OrderAheadProvider < SearchProvider
     find_by_name(restaurant_id)
   end
 
-  def search_by_keywords keywords_array
+  def search_by_keywords keywords_array, num_of_restaurants=500
     search_prefix = "/api/v1.0.6/stores/search/?query="
-    delivery_suffix = "&page=1&per=60&ext=&delivers_to=true&pickup_at=&open_now=&" + @lat_lon_query
+    delivery_suffix = "&page=1&per=#{num_of_restaurants}&ext=&delivers_to=true&pickup_at=&open_now=&" + @lat_lon_query
     search_term = keywords_array.gsub(" ", "+").downcase
 
     search_url = @host + search_prefix + search_term + delivery_suffix
@@ -31,6 +31,10 @@ class OrderAheadProvider < SearchProvider
     else
       return parse_search_json(search_results)
     end
+  end
+
+  def search_by_location
+    search_by_keywords("")
   end
 
   private

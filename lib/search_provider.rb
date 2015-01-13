@@ -6,19 +6,19 @@ class SearchProvider
   end
 
   def find_by_name restaurant
-    "find_by_name not implemented for this search provider"
+    raise "find_by_name not implemented for this search provider"
   end
 
   def find_by_id restaurant_id
-    "find_by_id not implemented for this search provider"
+    raise "find_by_id not implemented for this search provider"
   end
 
   def search_by_keywords keywords_array
-    "search_by_keywords not implemented for this search provider"
+    raise "search_by_keywords not implemented for this search provider"
   end
 
   def search_by_location address=@address
-    "search_by_location not implemented for this search provider"
+    raise "search_by_location not implemented for this search provider"
   end
   private
   def fetch_data search_url
